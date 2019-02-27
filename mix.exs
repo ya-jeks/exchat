@@ -3,7 +3,7 @@ defmodule Exchat.MixProject do
 
   def project do
     [
-      app: :rbk,
+      app: :exchat,
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
