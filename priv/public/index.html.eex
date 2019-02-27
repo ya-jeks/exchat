@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/source-sans.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet prefetch" href="/css/reset.min.css">
+  <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/messagebox.min.css">
+	<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+<div id="frame">
+	<div id="sidepanel">
+		<div id="profile">
+			<div class="wrap">
+				<img id="profile-img" src="/images/user.png" class="online" alt="" />
+				<p class="username">Username placeholder</p>
+			</div>
+		</div>
+		<div id="contacts">
+			<ul>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="messages">
+			<ul>
+			</ul>
+		</div>
+		<div class="message-input">
+			<div class="wrap">
+			<input type="text" placeholder="Write message..." />
+			<button class="submit"><i class="fa fa-play" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/jquery-2.2.4.min.js"></script>
+<script src="/js/messagebox.min.js"></script>
+<script> $.wsHost = "<%= ws_host %>"; </script>
+<script src="/js/app.js"></script>
+</body>
+</html>
