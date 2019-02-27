@@ -1,6 +1,6 @@
-defmodule Rbk.UsersRepo do
+defmodule Exchat.UsersRepo do
   use GenServer
-  alias Rbk.User
+  alias Exchat.User
 
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)

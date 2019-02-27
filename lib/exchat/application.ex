@@ -1,18 +1,18 @@
-defmodule Rbk.Application do
+defmodule Exchat.Application do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      worker(Rbk.UsersRepo, []),
-      worker(Rbk.MessagesRepo, []),
-      worker(Rbk.Bot, []),
+      worker(Exchat.UsersRepo, []),
+      worker(Exchat.MessagesRepo, []),
+      worker(Exchat.Bot, []),
       {Plug.Adapters.Cowboy2,
        scheme: :http, plug: nil, options: [port: 4000, dispatch: dispatch()]}
     ]
 
-    opts = [strategy: :one_for_one, name: Rbk.Supervisor]
+    opts = [strategy: :one_for_one, name: Exchat.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -20,8 +20,8 @@ defmodule Rbk.Application do
     [
       {:_,
        [
-         {"/ws", Rbk.WsHandler, []},
-         {:_, Plug.Adapters.Cowboy2.Handler, {Rbk.Routes, []}}
+         {"/ws", Exchat.WsHandler, []},
+         {:_, Plug.Adapters.Cowboy2.Handler, {Exchat.Routes, []}}
        ]}
     ]
   end

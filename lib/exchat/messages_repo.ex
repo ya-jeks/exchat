@@ -1,4 +1,4 @@
-defmodule Rbk.MessagesRepo do
+defmodule Exchat.MessagesRepo do
   use Agent
 
   def start_link(list \\ []) do

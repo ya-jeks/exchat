@@ -1,4 +1,4 @@
-defmodule Rbk.Bot do
+defmodule Exchat.Bot do
   use GenServer
 
   def start_link() do
@@ -7,8 +7,8 @@ defmodule Rbk.Bot do
 
   def init(state) do
     pid = self()
-    user = %Rbk.User{name: "Bot", pid: pid, uid: Rbk.User.uid(pid)}
-    Rbk.UsersRepo.push(user)
+    user = %Exchat.User{name: "Bot", pid: pid, uid: Exchat.User.uid(pid)}
+    Exchat.UsersRepo.push(user)
     speak(user)
     clear_messages()
 
@@ -17,14 +17,14 @@ defmodule Rbk.Bot do
 
   def speak(user) do
     text = message()
-    Rbk.Chat.broadcast(text, user)
-    Rbk.MessagesRepo.push(text, user)
+    Exchat.Chat.broadcast(text, user)
+    Exchat.MessagesRepo.push(text, user)
     next_time = (:rand.uniform(10) + 15) * 1000
     Process.send_after(__MODULE__, {:speak, user}, next_time)
   end
 
   def clear_messages() do
-    Rbk.MessagesRepo.reset
+    Exchat.MessagesRepo.reset
     Process.send_after(__MODULE__, {:clear_messages}, 10*60_000)
   end
 

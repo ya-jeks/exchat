@@ -1,4 +1,4 @@
-defmodule Rbk.Routes do
+defmodule Exchat.Routes do
   use Plug.Router
 
   plug(
@@ -12,7 +12,7 @@ defmodule Rbk.Routes do
   plug(:dispatch)
 
   get "/" do
-    ws_host = Application.get_env(:rbk, :ws_host)
+    ws_host = Application.get_env(:exchat, :ws_host)
     body = EEx.eval_file("priv/public/index.html.eex", ws_host: ws_host)
 
     conn

@@ -1,4 +1,4 @@
-defmodule Rbk.MixProject do
+defmodule Exchat.MixProject do
   use Mix.Project
 
   def project do
@@ -15,7 +15,7 @@ defmodule Rbk.MixProject do
   def application do
     [
       extra_applications: [:logger, :cowboy, :plug],
-      mod: {Rbk.Application, []}
+      mod: {Exchat.Application, []}
     ]
   end
 

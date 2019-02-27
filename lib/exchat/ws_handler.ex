@@ -1,4 +1,4 @@
-defmodule Rbk.WsHandler do
+defmodule Exchat.WsHandler do
   @behaviour :cowboy_websocket
   require Logger
 
@@ -24,21 +24,21 @@ defmodule Rbk.WsHandler do
   end
 
   def terminate(_, _, state) do
-    {:ok, user} = Rbk.UsersRepo.lookup(state.pid)
-    Rbk.Chat.user_exit(user)
-    Rbk.UsersRepo.delete(state.pid)
+    {:ok, user} = Exchat.UsersRepo.lookup(state.pid)
+    Exchat.Chat.user_exit(user)
+    Exchat.UsersRepo.delete(state.pid)
     :ok
   end
 
   defp process(%{"event" => "open", "params" => %{"name" => name}}, pid) do
-    user = %Rbk.User{name: name, pid: pid, uid: Rbk.User.uid(pid)}
-    Rbk.Chat.setup(user)
-    Rbk.Chat.joined_user(user)
+    user = %Exchat.User{name: name, pid: pid, uid: Exchat.User.uid(pid)}
+    Exchat.Chat.setup(user)
+    Exchat.Chat.joined_user(user)
   end
 
   defp process(%{"event" => "message", "params" => %{"text" => text}}, pid) do
-    {:ok, user} = Rbk.UsersRepo.lookup(pid)
-    Rbk.MessagesRepo.push(text, user)
-    Rbk.Chat.broadcast(text, user)
+    {:ok, user} = Exchat.UsersRepo.lookup(pid)
+    Exchat.MessagesRepo.push(text, user)
+    Exchat.Chat.broadcast(text, user)
   end
 end

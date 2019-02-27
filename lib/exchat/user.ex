@@ -1,4 +1,4 @@
-defmodule Rbk.User do
+defmodule Exchat.User do
   @derive {Poison.Encoder, except: [:pid]}
 
   @enforce_keys [:name, :pid]

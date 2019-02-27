@@ -2,7 +2,7 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :rbk,
+config :exchat,
   ws_host: "ws://localhost:4000/ws"
 
 # This configuration is loaded before any dependency and is restricted

@@ -1,2 +1,0 @@
-defmodule Rbk do
-end
